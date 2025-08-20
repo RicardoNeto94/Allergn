@@ -5,7 +5,7 @@ async function loadMenu() {
 }
 function codeToLabel(c){return LEGEND[c]||c;}
 function buildChips(cont,onChange){Object.keys(LEGEND).forEach(code=>{
-  const b=document.createElement('button');b.className='chip';b.dataset.code=code;b.innerHTML='<b>'+code+'</b> '+codeToLabel(code);
+  const b=document.createElement('button');b.className='chip';b.dataset.code=code;b.textContent=code+' '+codeToLabel(code);
   b.onclick=()=>{b.classList.toggle('active');onChange();};cont.appendChild(b);
 });}
 function getActiveFilters(){return[...document.querySelectorAll('.chip.active')].map(c=>c.dataset.code);}
