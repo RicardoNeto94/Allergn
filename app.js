@@ -1,3 +1,31 @@
+document.addEventListener('DOMContentLoaded', setupIntro);
+
+function setupIntro() {
+  const intro = document.getElementById('intro');
+  const app = document.getElementById('app');
+  if (!intro) return;
+
+  const enter = () => {
+    if (!document.body.contains(intro)) return;
+    intro.classList.add('fade-out');
+    setTimeout(() => { try{ intro.remove(); }catch(e){} if(app) app.classList.remove('hidden'); }, 350);
+  };
+
+  // Expose global fallback for inline onclick
+  window.__enter = enter;
+
+  // Bind multiple reliable events
+  intro.addEventListener('click', enter, {passive:true});
+  intro.addEventListener('touchend', enter, {passive:true});
+  const btn = document.getElementById('enterBtn');
+  if (btn) {
+    btn.addEventListener('click', enter, {passive:true});
+    btn.addEventListener('touchend', enter, {passive:true});
+  }
+  intro.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') enter(); });
+  intro.tabIndex = 0;
+}
+
 
 async function loadMenu(){
   try{
