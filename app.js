@@ -85,3 +85,17 @@ function centerChips() {
 
 window.addEventListener('resize', centerChips, {passive:true});
 window.addEventListener('orientationchange', centerChips, {passive:true});
+function setupIntro(){
+  const intro = document.getElementById('intro');
+  const app = document.getElementById('app');
+  if (!intro) return;
+  const enter = () => {
+    if (!document.body.contains(intro)) return;
+    intro.classList.add('fade-out');
+    setTimeout(() => { try{ intro.remove(); }catch(e){} app && app.classList.remove('hidden'); }, 450);
+  };
+  intro.addEventListener('click', enter, {passive:true});
+  intro.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') enter(); });
+  const btn = document.getElementById('enterBtn'); if (btn) btn.addEventListener('click', enter, {passive:true});
+  const logoBtn = intro.querySelector('.logo-btn, img'); if (logoBtn) logoBtn.addEventListener('click', enter, {passive:true});
+}
