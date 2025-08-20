@@ -115,3 +115,19 @@ button.ghost{
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:.01ms !important;transition-duration:.01ms !important;animation-iteration-count:1 !important}
 }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.header-logo {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--gold),
+              0 6px 12px rgba(0,0,0,0.5),
+              0 0 20px rgba(212,175,55,0.25);
+}
