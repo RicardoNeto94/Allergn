@@ -63,10 +63,10 @@ function setupIntro(){
   const chips=document.getElementById('chips');
   const search=document.getElementById('search');
   const clear=document.getElementById('clearFilters');
-  const rerender=()=>{ const sel=getActiveFilters(); const filtered=filterDishes(data,sel,search.value); renderGrid(grid,filtered,sel); updateMeta(filtered.length,sel); };
+  const rerender=()=>{ const sel=getActiveFilters(); const filtered=filterDishes(data,sel,(search && search.value) ? search.value : ''); renderGrid(grid,filtered,sel); updateMeta(filtered.length,sel); };
   buildChips(chips,rerender);
   search.addEventListener('input',rerender);
-  clear.addEventListener('click',()=>{ document.querySelectorAll('.chip.active').forEach(c=>c.classList.remove('active')); search.value=''; rerender(); });
+  clear.addEventListener('click',()=>{ document.querySelectorAll('.chip.active').forEach(c=>c.classList.remove('active')); (search && search.value) ? search.value : ''=''; rerender(); });
   renderGrid(grid,data,[]);
   updateMeta(data.length,[]);
 })();
