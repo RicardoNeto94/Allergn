@@ -149,3 +149,11 @@ function setupIntro(){
   updateMeta(data.length, []);
   centerChips();
 })();
+
+
+/* Defensive: remove any legacy header blocks if still present (cached HTML) */
+(function forceStripLegacyHeader(){
+  try{
+    document.querySelectorAll('.brand, .controls').forEach(n=>n.remove());
+  }catch(e){}
+})();
