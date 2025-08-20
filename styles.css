@@ -153,3 +153,27 @@ button.ghost{
               0 6px 12px rgba(0,0,0,0.5),
               0 0 20px rgba(212,175,55,0.25);
 }
+
+
+/* Centered, scrollable chips with iOS momentum + snap */
+.chips {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* iOS momentum */
+  scrollbar-width: none; /* Firefox */
+  width: 100%;
+  padding: 6px 8px 10px;
+  scroll-snap-type: x proximity;
+  justify-content: center; /* center when content fits; JS will center when overflowing */
+  touch-action: pan-x;
+}
+.chips::-webkit-scrollbar { display: none; } /* WebKit */
+.chip {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  font-size: 13px;
+  line-height: 1;
+  scroll-snap-align: center;
+}

@@ -70,3 +70,18 @@ function setupIntro(){
   renderGrid(grid,data,[]);
   updateMeta(data.length,[]);
 })();
+
+function centerChips() {
+  const row = document.getElementById('chips');
+  if (!row) return;
+  // If overflowing, center the content by adjusting scrollLeft
+  const extra = row.scrollWidth - row.clientWidth;
+  if (extra > 4) {
+    row.scrollLeft = Math.max(0, (row.scrollWidth - row.clientWidth) / 2);
+  } else {
+    row.scrollLeft = 0;
+  }
+}
+
+window.addEventListener('resize', centerChips, {passive:true});
+window.addEventListener('orientationchange', centerChips, {passive:true});
