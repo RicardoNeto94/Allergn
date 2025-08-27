@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0C0F14">
+  <title>Shang Shi — Floor Map</title>
+  <link rel="stylesheet" href="./styles.css?v=final1">
+</head>
+<body class="floor-body">
+  <header class="header">
+    <img src="./logo.png" alt="Shang Shi logo" class="header-logo" />
+    <p class="subtitle">Live floor map — assign <strong>waiters</strong> and <strong>allergens</strong> per table.</p>
+  </header>
+
+  <nav class="tabs" role="navigation" aria-label="Primary">
+    <a class="tab" href="./menu.html">Menu</a>
+    <a class="tab active" href="./floor.html" aria-current="page">Floor</a>
+  </nav>
+
+
+  <section class="floor-controls">
+    <a class="chip" href="./menu.html">↩ Menu</a>
+    <button id="layoutToggle" class="chip">Edit layout</button>
+    <button id="clearState" class="chip">Clear state</button>
+    <span class="muted small" id="liveStatus" aria-live="polite"></span>
+  </section>
+
+  <main id="floor" class="floor"></main>
+
+  <!-- Edit dialog -->
+  <dialog id="editDialog">
+    <form method="dialog" class="edit-panel">
+      <h3 id="dlgTitle">Table</h3>
+      <label>Waiter
+        <select id="waiterSelect"></select>
+      </label>
+      <div>
+        <div class="strip__title" style="margin-left:0">Allergens</div>
+        <div id="dlgAllergens" class="chips"></div>
+      </div>
+      <label>Notes
+        <textarea id="notes" rows="2" placeholder="eg. GF soy sauce, no sesame oil"></textarea>
+      </label>
+      <menu class="edit-actions">
+        <button id="dlgCancel" class="chip">Cancel</button>
+        <button id="dlgClear" class="chip">Clear</button>
+        <button id="dlgSave" class="chip accent">Save</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Optional: Firebase config. If provided, realtime sync is enabled.
+  <script>
+    window.FB_CONFIG = {
+      apiKey: "…",
+      authDomain: "…",
+      projectId: "…"
+    };
+  </script> -->
+
+  <script type="module" src="./floor.js?v=1"></script>
+</body>
+</html>

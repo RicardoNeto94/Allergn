@@ -597,3 +597,37 @@ dialog#qrDialog{ border:none; padding:0; background: transparent }
 dialog#qrDialog::backdrop{ backdrop-filter: blur(4px); background: rgba(0,0,0,.35) }
 .qr{ background: var(--panel); border: 1px solid rgba(210,164,85,.18); border-radius: 14px; padding: 16px; display:grid; gap:10px; place-items:center }
 .qr-url{ color: var(--muted); font-size: 12px; max-width: 75vw; word-break: break-all; text-align:center }
+
+/* === Floor map === */
+.floor-controls{ display:flex; gap:8px; align-items:center; padding:8px 12px; }
+.floor-controls .small{ font-size:12px; color: var(--muted); }
+.floor{ position: relative; height: calc(100vh - 180px); margin: 8px 12px; border-radius: 14px;
+  border:1px solid rgba(210,164,85,.18); background: radial-gradient(1200px 800px at 50% -10%, rgba(210,164,85,.06), transparent 60%), var(--panel); overflow:hidden; }
+.table{ position: absolute; transform: translate(-50%,-50%); min-width: 100px; padding:10px; border-radius: 12px; border:1px solid rgba(210,164,85,.28);
+  background: var(--card); box-shadow: 0 8px 16px rgba(0,0,0,.18); cursor: pointer; }
+.table:focus{ outline: 2px solid var(--accent); }
+.table.has-allergy{ border-color: #c45858; box-shadow: 0 0 0 2px rgba(196,88,88,.35); }
+.table-id{ font-weight:800; letter-spacing:.03em; color: var(--heading); }
+.table-meta{ display:flex; gap:6px; flex-wrap: wrap; margin-top:6px; }
+.table-notes{ color: var(--muted); font-size:12px; margin-top:6px; }
+.pill{ background: var(--chip); border:1px solid rgba(210,164,85,.32); border-radius:99px; padding:2px 8px; font-size:12px; }
+.pill.a{ border-color: rgba(196,88,88,.45); }
+
+.edit-panel{ background: var(--panel); border:1px solid rgba(210,164,85,.18); border-radius: 12px; padding: 12px; min-width: 280px; color: var(--text); }
+.edit-panel h3{ margin: 0 0 8px 0; }
+.edit-panel label{ display:block; font-size:12px; color: var(--muted); margin: 10px 0 0 }
+.edit-panel select, .edit-panel textarea{ width:100%; background: var(--card); color: var(--text); border:1px solid rgba(210,164,85,.28); border-radius:8px; padding:8px; }
+.edit-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:10px; }
+.chip.accent{ background: var(--accent); color:#121212; border-color: var(--accent2); }
+
+/* === Tabs (Menu ↔ Floor) === */
+.tabs{
+  display:flex; gap:8px; padding: 8px 12px 0; align-items:center;
+}
+.tab{
+  display:inline-block; padding:8px 12px; border-radius:999px;
+  background: var(--chip); border:1px solid rgba(210,164,85,.28);
+  color: var(--heading); text-decoration:none; font-weight:600;
+}
+.tab:hover{ filter: brightness(1.08); }
+.tab.active{ background: var(--accent); color:#121212; border-color: var(--accent2); }
