@@ -174,7 +174,7 @@
     "allergens": [
       "GL",
       "SO",
-      "FI",
+      "Fl",
       "MR"
     ],
     "description": "Marinated in Honey",
@@ -190,7 +190,6 @@
       "ON",
       "SO",
       "MR",
-      "EG",
       "Mi"
     ],
     "description": "",
@@ -255,7 +254,7 @@
       "ON",
       "SO",
       "SE",
-      "FI"
+      "Fl"
     ],
     "description": "",
     "category": "Mains"
@@ -284,7 +283,7 @@
       "ON",
       "CR",
       "Mi",
-      "FI"
+      "Fl"
     ],
     "description": "",
     "category": "Mains"
@@ -299,8 +298,7 @@
       "ON",
       "SO",
       "SE",
-      "Mi",
-      "EG"
+      "Mi"
     ],
     "description": "",
     "category": "Mains"
@@ -525,7 +523,7 @@
       "NU",
       "SO",
       "Mi",
-      "FI",
+      "Fl",
       "ON",
       "EG"
     ],

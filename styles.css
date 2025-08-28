@@ -693,3 +693,105 @@ html { scroll-behavior: smooth; }
   -webkit-backdrop-filter: none !important;
   filter: none !important;
 }
+
+/* === Reset Button (Apple-style circular) === */
+.reset-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; color:#D2A455;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor:pointer;
+  transition: all .25s ease;
+}
+.reset-btn:hover { background: rgba(255,255,255,0.25); transform:scale(1.05); }
+.reset-btn:active { transform:scale(0.95); }
+
+/* === Stronger Presets Bar Contrast === */
+.filter-panel .chips {
+  background: rgba(20,20,20,0.7) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+}
+.chip {
+  background: rgba(255,255,255,0.18) !important;
+  color:#fff !important;
+}
+.chip.active {
+  background:#D2A455 !important;
+  color:#121212 !important;
+}
+
+
+/* ==== FIXES: Restored Reset button, stronger presets contrast (final) ==== */
+
+/* Reset button (Apple-like round icon). Supports either #resetBtn or .reset-btn created by app.js */
+#resetBtn, .reset-btn {
+  position: fixed;
+  right: 14px;
+  bottom: calc(env(safe-area-inset-bottom) + 120px);
+  z-index: 60;
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.92);
+  color: #121212;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: none;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+#resetBtn:hover, .reset-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgba(0,0,0,0.32); }
+#resetBtn:active, .reset-btn:active { transform: translateY(0) scale(.98); }
+
+/* Icon (↺) */
+#resetBtn::before, .reset-btn::before {
+  content: "↺";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Dark theme adjustment */
+body:not(.light) #resetBtn, body:not(.light) .reset-btn {
+  background: rgba(250,250,250,0.95);
+  color: #0b0f12;
+}
+
+/* Move presets (chips) closer and increase contrast */
+.filter-panel { bottom: calc(env(safe-area-inset-bottom) + 80px) !important; }
+.filter-panel .chips {
+  background: rgba(0,0,0,0.38) !important;  /* darker glass for dark bg */
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  color: #E7ECEA !important;
+  padding: 10px 12px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35) !important;
+}
+
+/* Chip readability */
+.chip {
+  background: rgba(255,255,255,0.16) !important;
+  border: 1px solid rgba(255,255,255,0.30) !important;
+  color: #F2F5F4 !important;
+  font-weight: 700 !important;
+}
+.chip.active {
+  background: #D2A455 !important;
+  border-color: #B5862E !important;
+  color: #121212 !important;
+  box-shadow: 0 0 0 1px rgba(210,164,85,0.70), 0 6px 16px rgba(0,0,0,0.28) !important;
+}
+
+/* Make "Filters" dock button show active dot clearly */
+#filterToggle .dot, #categoryToggle .dot { opacity: 1 !important; }
+#filterToggle[aria-expanded="true"] .dot { background: #34c759 !important; }
+#categoryToggle[aria-expanded="true"] .dot { background: #D2A455 !important; }
+
+/* Ensure no stray broken rules hide buttons */
+#resetBtn, .reset-btn, .filter-btn, .dock-inner, .filter-panel .chips { visibility: visible !important; opacity: 1 !important; }
