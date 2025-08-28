@@ -21,6 +21,17 @@ const els = {
   categoryToggle: document.getElementById('categoryToggle'),
   resetBtn: document.getElementById('resetBtn')
 };
+const elsX = {
+  shareBtn: document.getElementById('shareBtn'),
+  qrBtn: document.getElementById('qrBtn'),
+  qrDialog: document.getElementById('qrDialog'),
+  qrCanvas: document.getElementById('qrCanvas'),
+  qrUrl: document.getElementById('qrUrl'),
+  qrClose: document.getElementById('qrClose'),
+  sessionBanner: document.getElementById('sessionBanner'),
+  sessionLabel: document.getElementById('sessionLabel'),
+  sessionChips: document.getElementById('sessionChips'),
+};
 
 const elsX = {
   shareBtn: document.getElementById('shareBtn'),
@@ -75,6 +86,14 @@ function renderCategoryChips(){
 function card(item){
   const a = document.createElement('article');
   a.className = 'card';
+  // status class based on current filters
+  let status = 'neutral';
+  if (selectedAllergens.size){
+    const al = item.allergens || [];
+    const ok = [...selectedAllergens].every(x => !al.includes(x));
+    status = ok ? 's-safe' : 's-no';
+  }
+  a.classList.add(status);
   a.setAttribute('data-category', item.category||'');
   a.setAttribute('data-allergens', JSON.stringify(item.allergens||[]));
 
@@ -151,6 +170,27 @@ function renderGrid(){
   els.result.textContent = `${items.length} dishes`;
 }
 
+
+function updateSessionChips(){
+  if (!elsX.sessionChips) return;
+  elsX.sessionChips.innerHTML = '';
+  if (!selectedAllergens.size){
+    const i = document.createElement('span');
+    i.className = 'chip';
+    i.textContent = 'No allergens set';
+    i.style.opacity = '.7';
+    elsX.sessionChips.appendChild(i);
+    return;
+  }
+  [...selectedAllergens].forEach(code => {
+    const b = document.createElement('button');
+    b.className = 'chip active';
+    b.textContent = code;
+    b.title = 'Remove ' + code;
+    b.addEventListener('click', ()=>{ selectedAllergens.delete(code); refresh(); }, {passive:true});
+    elsX.sessionChips.appendChild(b);
+  });
+}
 function updateMeta(){
   const parts = [];
   if (selectedAllergens.size) parts.push(`SAFE from: ${[...selectedAllergens].join(', ')}`);
@@ -188,7 +228,7 @@ function clearAll(){
   els.categoryToggle && els.categoryToggle.setAttribute('aria-expanded','false');
 }
 
-function refresh(){ renderGrid(); updateMeta(); updateCategoryCounts(); }
+function refresh(){ renderGrid(); updateMeta(); updateCategoryCounts(); updateSessionChips(); }
 
 
 // === Share & QR ===
@@ -256,8 +296,14 @@ function initFromURL(){
   data = await loadMenu();
   renderAllergenChips();
   renderCategoryChips();
+  initFromURL && initFromURL();
   refresh();
-  initFromURL();
+  if (typeof elsX!=='undefined'){ elsX.sessionLabel && elsX.sessionLabel.addEventListener('click',()=>{ const v=prompt('Table/Guest:', localStorage.getItem('ss_table')||''); if(v!==null){ localStorage.setItem('ss_table', v.trim()); elsX.sessionLabel.textContent = v.trim()||'Session'; }});
+  elsX.sessionLabel && (elsX.sessionLabel.textContent = (localStorage.getItem('ss_table')||'Session'));
+  elsX.shareBtn && elsX.shareBtn.addEventListener('click', doShare, {passive:true});
+  elsX.qrBtn && elsX.qrBtn.addEventListener('click', showQR, {passive:true});
+  elsX.qrClose && elsX.qrClose.addEventListener('click', ()=> elsX.qrDialog && elsX.qrDialog.close && elsX.qrDialog.close()); }
+initFromURL();
   if (elsX.shareBtn) elsX.shareBtn.addEventListener('click', doShare, {passive:true});
   if (elsX.qrBtn) elsX.qrBtn.addEventListener('click', showQR, {passive:true});
   if (elsX.qrClose) elsX.qrClose.addEventListener('click', ()=> elsX.qrDialog && elsX.qrDialog.close && elsX.qrDialog.close());

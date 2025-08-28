@@ -1,3 +1,81 @@
+
+:root{
+  --bg:#080808;        /* near-black */
+  --panel:#0C0F12;     /* panels */
+  --card:#121518;      /* tiles */
+  --text:#EAE8E3;      /* primary text */
+  --muted:#A7A19A;     /* secondary */
+  --heading:#F0ECE6;   /* headings */
+  --accent:#CF9661;    /* warm gold */
+  --accent2:#AC7147;   /* darker gold */
+  --chip:#161A1E;      /* chip bg */
+  --danger:#D76A6A;    /* red */
+  --warn:#D9A441;      /* amber */
+  --success:#6AC58B;   /* green */
+}
+html,body{
+  margin:0;color:var(--text);
+  background: radial-gradient(1200px 800px at 50% -10%, rgba(207,150,97,0.08), transparent 56%), var(--bg);
+  font-family:-apple-system,system-ui,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+}
+/* Header */
+.header{position:sticky;top:0;z-index:30;background: rgba(12,15,18,.75);backdrop-filter: blur(6px);
+  display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid rgba(207,150,97,.18)}
+.header-logo{width:88px;height:auto;display:block;border:none;box-shadow:none;background:transparent}
+.subtitle{margin:0;color:var(--muted);font-size:12px}
+/* Tabs */
+.tabs{ display:flex; gap:8px; padding: 8px 12px 0; align-items:center; justify-content:center; }
+.tab{ display:inline-block; padding:8px 12px; border-radius:999px; background: var(--chip); border:1px solid rgba(207,150,97,.28);
+  color: var(--heading); text-decoration:none; font-weight:600; }
+.tab.active{ background: var(--accent); color:#121212; border-color: var(--accent2); }
+.tab:hover{ filter: brightness(1.06); }
+.theme-btn{ position: fixed; right:12px; bottom:12px; z-index:50; background: var(--chip); border:1px solid rgba(207,150,97,.28); border-radius:12px; padding:8px 10px; }
+/* Session */
+.session{ position: sticky; top: 120px; z-index:25; margin:8px 12px; padding:8px 12px; background: var(--panel); border:1px solid rgba(207,150,97,.18); border-radius:12px; display:flex; justify-content:space-between; align-items:center; }
+.session__label{ background: var(--chip); color: var(--heading); border:1px solid rgba(207,150,97,.35); border-radius:999px; padding:6px 10px; font-weight:600; cursor:pointer; }
+.chips.compact .chip{ padding:4px 8px; font-size:12px; }
+/* Toolbar */
+.meta-row{ display:flex; gap:10px; align-items:center; justify-content:flex-start; color:rgba(255,255,255,.85); font-size:13px; margin:8px 12px 4px; }
+.active-filter{ color: var(--accent); }
+.toolbar{ position:sticky; top: calc(120px + 44px); z-index:24; display:flex; gap:8px; justify-content:space-between; align-items:center; padding:8px 12px 0; background: linear-gradient(180deg, rgba(8,8,8,.85), rgba(8,8,8,0)); }
+.toolbar-actions{ display:flex; gap:8px; }
+.filter-panel.open{ padding:8px 12px; }
+/* Chips */
+.chips{ display:flex; gap:8px; flex-wrap:wrap; }
+.chip{
+  background: var(--chip); color: var(--heading);
+  border:1px solid rgba(207,150,97,.28); border-radius:999px; padding:6px 12px; font-weight:600; cursor:pointer;
+}
+.chip:hover{ filter:brightness(1.06); }
+.chip.active{ background: var(--accent); color:#121212; border-color: var(--accent2); }
+.chip.category .count{
+  opacity:.9; font-weight:700; margin-left:6px; background: rgba(255,255,255,0.12);
+  padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.18);
+}
+/* Header actions */
+.header-actions{ display:flex; gap:8px; margin-top:4px; }
+.icon-btn{
+  display:inline-grid; place-items:center; width:36px; height:36px; border-radius:10px;
+  background: var(--chip); border:1px solid rgba(207,150,97,.28); color: var(--heading); cursor:pointer;
+}
+.icon-btn:hover{ filter:brightness(1.06); }
+.reset-btn{ display:inline-grid; place-items:center; width:36px; height:36px; border-radius:10px;
+  background: var(--chip); border:1px solid rgba(207,150,97,.28); color: var(--heading); cursor:pointer; }
+.reset-btn svg{ width:18px; height:18px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; }
+.reset-btn.spin svg{ transform: rotate(90deg); transition: transform .4s cubic-bezier(.22,1,.36,1); }
+/* Grid & cards */
+.main{ max-width:1100px; margin:0 auto; padding: 0 0 120px; }
+.grid{ display:grid; gap:18px; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); padding:12px; }
+.card{ position:relative; background: var(--card); border:1px solid rgba(207,150,97,.18); border-radius:14px; padding:12px; }
+.card::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:14px 0 0 14px; background: transparent; }
+.card.s-safe::before{ background: var(--success); }
+.card.s-no::before{ background: var(--danger); }
+/* QR modal */
+dialog#qrDialog{ border:none; padding:0; background: transparent }
+dialog#qrDialog::backdrop{ backdrop-filter: blur(4px); background: rgba(0,0,0,.35) }
+.qr{ background: var(--panel); border: 1px solid rgba(207,150,97,.18); border-radius: 14px; padding: 16px; display:grid; gap:10px; place-items:center }
+.qr-url{ color: var(--muted); font-size: 12px; max-width: 75vw; word-break: break-all; text-align:center }
+
 :root{
   --bg:#0B0F12;        /* deep blue-black */
   --panel:#0D1419;     /* header / panels */
@@ -590,3 +668,9 @@ dialog#qrDialog{ border:none; padding:0; background: transparent }
 dialog#qrDialog::backdrop{ backdrop-filter: blur(4px); background: rgba(0,0,0,.35) }
 .qr{ background: var(--panel); border: 1px solid rgba(210,164,85,.18); border-radius: 14px; padding: 16px; display:grid; gap:10px; place-items:center }
 .qr-url{ color: var(--muted); font-size: 12px; max-width: 75vw; word-break: break-all; text-align:center }
+
+/* === Floor map additions === */
+.table.has-highrisk{ box-shadow: 0 0 0 2px rgba(215,106,106,.55), 0 8px 16px rgba(0,0,0,.22); border-color: rgba(215,106,106,.7); }
+.sheet-right{ border:none; padding:0; width:min(420px, 92vw); }
+.sheet-right::backdrop{ background: rgba(0,0,0,.35); backdrop-filter: blur(4px); }
+.sheet-right form.edit-panel{ height:100vh; position:fixed; right:0; top:0; width:min(420px, 92vw); background: var(--panel); border-left:1px solid rgba(207,150,97,.18); border-radius:0; padding:16px; overflow:auto; }
