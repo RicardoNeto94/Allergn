@@ -693,3 +693,16 @@ html { scroll-behavior: smooth; }
   -webkit-backdrop-filter: none !important;
   filter: none !important;
 }
+
+
+/* Force Milk & Mustard chips to white text */
+.chip[data-code="Mi"], .chip[data-code="MU"] { color:#ffffff !important; }
+/* Light mode dock brighter */
+body.light .dock-inner {
+  background: rgba(255,255,255,0.92) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08) !important;
+}
+body.light .filter-btn {
+  background: rgba(255,255,255,0.96) !important;
+  color:#143d31 !important;
+}
